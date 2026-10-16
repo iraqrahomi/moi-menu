@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Moi — القائمة</title>
+<meta name="description" content="قائمة الطعام والمشروبات لمطعم Moi">
+<meta name="theme-color" content="#121110">
+
+<meta property="og:title" content="Moi — القائمة">
+<meta property="og:description" content="قائمة الطعام والمشروبات">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>:root{--bg:#121110;--card:#1b1917;--line:#2e2a25;--gold:#c9a96a;--cream:#f3ead8;--mute:#a79d8b}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bg);color:var(--cream);font-family:Tajawal,system-ui,sans-serif;line-height:1.6}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero{min-height:46svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.5rem 1.5rem 2rem;
+ background:radial-gradient(ellipse at 50% 20%,#2a2319 0,var(--bg) 72%)}
+.logo{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;letter-spacing:.08em;font-style:italic;direction:ltr;
+ font-size:clamp(4rem,20vw,7rem);line-height:1;background:linear-gradient(180deg,#f0dcae,#b8944f);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo.sm{font-size:1.8rem}
+.eyebrow{color:var(--gold);letter-spacing:.1em;font-size:.9rem;margin-bottom:.8rem}
+.tagline{color:var(--mute);margin:1rem 0 1.4rem;max-width:30ch;font-size:.95rem}
+.cta{border:1px solid var(--gold);color:var(--gold);padding:.65rem 1.8rem;border-radius:99px;text-decoration:none;font-weight:500;transition:.25s}
+.cta:hover,.cta:focus-visible{background:var(--gold);color:var(--bg)}
+.toolbar{position:sticky;top:0;z-index:5;background:rgba(18,17,16,.96);backdrop-filter:blur(8px);padding:.7rem 1rem .5rem;border-bottom:1px solid var(--line)}
+.search input{width:100%;max-width:640px;display:block;margin:0 auto .6rem;padding:.75rem 1.1rem;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--cream);font:inherit;font-size:1rem}
+.search input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.cats{display:flex;gap:.45rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.3rem;max-width:1100px;margin:0 auto}
+.cats::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:transparent;color:var(--mute);padding:.5rem 1rem;border-radius:99px;font:inherit;font-size:.95rem;cursor:pointer;min-height:44px;transition:.2s}
+.chip:hover{color:var(--cream);border-color:var(--gold)}
+.chip[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#17130c;font-weight:700}
+.count{max-width:1100px;margin:1rem auto 0;padding:0 1.2rem;color:var(--mute);font-size:.85rem}
+.grid{max-width:1100px;margin:0 auto;padding:0 1.2rem 3rem}
+.sec{padding-top:1.6rem;animation:rise .35s both}
+.sec h2{font-size:1.35rem;color:var(--gold);font-weight:700;padding-bottom:.5rem;border-bottom:1px solid var(--gold)}
+.rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));column-gap:2.5rem}
+.row{display:flex;align-items:center;gap:.6rem;padding:.8rem 0;border-bottom:1px solid var(--line);min-height:56px}
+.info{min-width:0}
+.nm{font-weight:500;font-size:1.05rem}
+.ds{color:var(--mute);font-size:.85rem}
+.dots{flex:1;min-width:1rem;border-top:2px dotted #4a4338;align-self:center;margin-top:.2rem}
+.pr{color:var(--gold);font-weight:700;font-size:1.1rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.meal{display:inline-block;margin-top:.15rem;border:1px solid #5a4a2c;color:var(--gold);font-size:.75rem;padding:0 .6rem;border-radius:99px}
+.badge{margin-inline-start:.5rem;background:var(--gold);color:#17130c;font-size:.7rem;font-weight:700;padding:.1rem .6rem;border-radius:99px;vertical-align:middle}
+.rv{display:block;color:#ff8a80;font-size:.72rem}
+.th{width:56px;height:56px;border-radius:10px;object-fit:cover;flex:none}
+.empty{text-align:center;color:var(--mute);padding:3rem 1rem}
+footer{text-align:center;padding:2.5rem 1rem;border-top:1px solid var(--line);color:var(--mute);font-size:.9rem}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <p class="eyebrow" id="place"></p>
+  <h1 class="logo" aria-label="Moi">Moi</h1>
+  <p class="tagline" id="tagline"></p>
+  <a class="cta" href="#menu">استعرض القائمة</a>
+</header>
+<main id="menu">
+  <div class="toolbar">
+    <label class="search"><span class="sr">ابحث عن صنف</span>
+      <input id="q" type="search" placeholder="ابحث عن صنف…" autocomplete="off"></label>
+    <nav id="cats" class="cats" aria-label="التصنيفات"></nav>
+  </div>
+  <p id="count" class="count" aria-live="polite"></p>
+  <section id="grid" class="grid"></section>
+  <p id="empty" class="empty" hidden>لا توجد نتائج مطابقة. جرّب كلمة أخرى أو اختر «الكل».</p>
+</main>
+<footer><span class="logo sm">Moi</span><p id="foot"></p></footer>
+<script>/* ============ بيانات المنيو — عدّل هنا فقط ============
+ الصنف: { id, cat, name, price, desc?, badge?, image?, review? }
+ - price: بالدينار العراقي (رقم فقط). الأسعار هنا = المطبوعة في المنيو الورقي.
+ - image: مسار صورة (مثل "assets/latte.jpg") أو رابط. إن تُرك فارغًا تظهر بطاقة بصرية بديلة.
+ - badge: مثل "جديد" أو "الأكثر طلبًا" (اختياري).
+ - meal: سعر «وجبة» إن وُجد (اختياري).
+ - review: ملاحظة داخلية للمراجعة، لا تظهر للزوار (تظهر فقط عند فتح الرابط بـ ?review=1).
+ - desc: إن تُرك فارغًا يُستخدم الوصف العام للتصنيف. */
+window.MENU = {
+  brand: { name: "Moi", tagline: "قهوة · حلويات · لحظات تستحق المزيد", currency: "د.ع", place: "داخل الجامعة" },
+  categories: [
+    { id: "breakfast", name: "الفطور", icon: "🍳", desc: "طبق فطور" },
+    { id: "appetizer", name: "مقبلات باردة", icon: "🥙", desc: "مقبلات باردة" },
+    { id: "salad", name: "السلطات", icon: "🥗", desc: "سلطة" },
+    { id: "sandwich", name: "السندويشات", icon: "🥪", desc: "سندويش" },
+    { id: "chickburger", name: "برگر دجاج", icon: "🍔", desc: "برگر دجاج" },
+    { id: "beefburger", name: "برگر لحم", icon: "🍔", desc: "برگر لحم" },
+    { id: "italian", name: "ايطالي", icon: "🍕", desc: "من القائمة الإيطالية" },
+    { id: "rizo", name: "ريزو", icon: "🍛", desc: "طبق ريزو" },
+    { id: "fanker", name: "الفنكر", icon: "🌯", desc: "فنكر" },
+    { id: "hot", name: "المشروبات الساخنة", icon: "☕", desc: "مشروب ساخن" },
+    { id: "cold", name: "المشروبات الباردة", icon: "🧊", desc: "مشروب بارد" },
+    { id: "mojito", name: "موهيتو", icon: "🍹", desc: "مشروب موهيتو منعش" },
+    { id: "juice", name: "العصائر الطبيعية", icon: "🍊", desc: "عصير طبيعي" },
+    { id: "frappe", name: "الفرابيه", icon: "🥤", desc: "مشروب مثلج مخفوق" },
+    { id: "smoothie", name: "السموذي", icon: "🍓", desc: "سموذي منعش" },
+    { id: "waffle", name: "الوافل", icon: "🧇", desc: "وافل بنكهة الصنف" },
+    { id: "crepe", name: "الكريب", icon: "🥞", desc: "كريب بحشوة الصنف" },
+    { id: "pancake", name: "ميني بان كيك", icon: "🥞", desc: "ميني بان كيك بنكهة الصنف" }
+  ],
+  items: [
+    // --- المشروبات الساخنة (كُتبت بخط اليد أسعار أعلى على أغلبها: لم تُعتمد) ---
+    { id: "h1", cat: "hot", name: "اسبريسو", price: 1500, review: "مكتوب بخط اليد 2500 والمطبوع 1500 مشطوب" },
+    { id: "h2", cat: "hot", name: "قهوة تركية", price: 1500, review: "بخط اليد 2500" },
+    { id: "h3", cat: "hot", name: "قهوة فرنسية", price: 2000, review: "بخط اليد 2500" },
+    { id: "h4", cat: "hot", name: "كابوتشينو", price: 1500, review: "بخط اليد 3000" },
+    { id: "h5", cat: "hot", name: "لاتيه", price: 2000, review: "بخط اليد 3000" },
+    { id: "h6", cat: "hot", name: "سبانيش لاتيه", price: 2000, review: "بخط اليد 3000" },
+    { id: "h7", cat: "hot", name: "موكا لاتيه", price: 2000, review: "بخط اليد 3000" },
+    { id: "h8", cat: "hot", name: "كراميل ماكياتو", price: 2000, review: "بخط اليد 3000، المطبوع مشطوب" },
+    { id: "h9", cat: "hot", name: "لاتيه خاص", price: 2000, review: "بخط اليد 3000" },
+    { id: "h10", cat: "hot", name: "هوت شوكليت", price: 1500, review: "بخط اليد 3000" },
+    { id: "h11", cat: "hot", name: "شاي عراقي", price: 500 },
+    { id: "h12", cat: "hot", name: "شاي كرك", price: 1000 },
+    // --- المشروبات الباردة ---
+    { id: "c1", cat: "cold", name: "لاتيه بارد", price: 2000, review: "بخط اليد 3000 قرب الشعار، غير واضح" },
+    { id: "c2", cat: "cold", name: "اكسير لاتيه", price: 2000 },
+    { id: "c3", cat: "cold", name: "بوتلين لاتيه", price: 2000, review: "تأكد من الاسم" },
+    { id: "c4", cat: "cold", name: "ايس فيورا", price: 2000 },
+    { id: "c5", cat: "cold", name: "سبانيش لاتيه بارد", price: 2000 },
+    { id: "c6", cat: "cold", name: "موكا بارد", price: 2000 },
+    { id: "c7", cat: "cold", name: "كاراميل ماكياتو بارد", price: 2000 },
+    // --- موهيتو (الصورة مقطوعة من الحافة) ---
+    { id: "m1", cat: "mojito", name: "موهيتو ليمون ونعناع", price: 2000, review: "بخط اليد 3000" },
+    { id: "m2", cat: "mojito", name: "موهيتو ستروبيري", price: 2000, review: "السعر عليه شطب/تعديل" },
+    // --- العصائر الطبيعية ---
+    { id: "j1", cat: "juice", name: "عصير برتقال", price: 1500, review: "بخط اليد 3000" },
+    { id: "j2", cat: "juice", name: "عصير ليمون ونعناع", price: 1500 },
+    { id: "j3", cat: "juice", name: "عصير موز وحليب", price: 2000 },
+    // --- الفرابيه ---
+    { id: "f1", cat: "frappe", name: "فرابيه كراميل", price: 2000 },
+    { id: "f2", cat: "frappe", name: "فرابيه موكا", price: 2000 },
+    { id: "f3", cat: "frappe", name: "فرابيه بيستاشيو", price: 2000 },
+    // --- السموذي ---
+    { id: "s1", cat: "smoothie", name: "سموذي اناناس", price: 2500, review: "بخط اليد 3000؟" },
+    { id: "s2", cat: "smoothie", name: "سموذي فراولة", price: 2500 },
+    { id: "s3", cat: "smoothie", name: "سموذي مانجو", price: 2500 },
+    { id: "s4", cat: "smoothie", name: "سموذي باشن فروت", price: 2500 },
+    { id: "s5", cat: "smoothie", name: "سموذي موي", price: 3000 },
+    // --- الوافل ---
+    { id: "w1", cat: "waffle", name: "وافل نوتيلا", price: 3000 },
+    { id: "w2", cat: "waffle", name: "وافل بيستاشيو", price: 3000 },
+    { id: "w3", cat: "waffle", name: "وافل لوتس", price: 3000 },
+    { id: "w4", cat: "waffle", name: "وافل اوريو", price: 3000 },
+    { id: "w5", cat: "waffle", name: "وافل فواكه", price: 4000 },
+    // --- الكريب ---
+    { id: "r1", cat: "crepe", name: "كريب نوتيلا", price: 3000 },
+    { id: "r2", cat: "crepe", name: "كريب بيستاشيو", price: 3000 },
+    { id: "r3", cat: "crepe", name: "كريب لوتس", price: 3000 },
+    { id: "r4", cat: "crepe", name: "كريب اوريو", price: 3000 },
+    { id: "r5", cat: "crepe", name: "كريب فواكه", price: 3000 },
+    // --- ميني بان كيك ---
+    { id: "p1", cat: "pancake", name: "ميني بان كيك نوتيلا", price: 3000 },
+    { id: "p2", cat: "pancake", name: "ميني بان كيك بيستاشيو", price: 3000 },
+    { id: "p3", cat: "pancake", name: "ميني بان كيك لوتس", price: 3000 },
+    { id: "p4", cat: "pancake", name: "ميني بان كيك اوريو", price: 3000 },
+    { id: "p5", cat: "pancake", name: "ميني بان كيك فواكه", price: 3000 },
+    // --- الأطعمة (صفحتا الأكل) ---
+    { id: "bre1", cat: "breakfast", name: "شوربة عدس", price: 2000 },
+    { id: "bre2", cat: "breakfast", name: "شوربة فطر", price: 2500 },
+    { id: "bre3", cat: "breakfast", name: "منقوشة زعتر", price: 1500 },
+    { id: "bre4", cat: "breakfast", name: "منقوشة جبن", price: 2500, review: "الاسم يظهر «جبن ن» — تأكد" },
+    { id: "bre5", cat: "breakfast", name: "منقوشة كوكتيل", price: 2000 },
+    { id: "bre6", cat: "breakfast", name: "حبش مدخن وجبن", price: 3000 },
+    { id: "bre7", cat: "breakfast", name: "مرتديلا وجبن", price: 3000 },
+    { id: "bre8", cat: "breakfast", name: "قيمر وعسل", price: 2500 },
+    { id: "app1", cat: "appetizer", name: "حمص", price: 2000 },
+    { id: "app2", cat: "appetizer", name: "متبل باذنجان", price: 2000 },
+    { id: "app3", cat: "appetizer", name: "جاجيك", price: 1500 },
+    { id: "app4", cat: "appetizer", name: "رمانية", price: 2000 },
+    { id: "app5", cat: "appetizer", name: "باذنجانية", price: 2000 },
+    { id: "app6", cat: "appetizer", name: "مشكل ٣ اصناف", price: 3000 },
+    { id: "sal1", cat: "salad", name: "فتوش", price: 3500 },
+    { id: "sal2", cat: "salad", name: "تبولة", price: 3500 },
+    { id: "sal3", cat: "salad", name: "سيزر", price: 4500 },
+    { id: "sal4", cat: "salad", name: "جرجير", price: 3000 },
+    { id: "sal5", cat: "salad", name: "سلطة موي", price: 4500 },
+    { id: "san1", cat: "sandwich", name: "فاهيتا", price: 3500, meal: 5000 },
+    { id: "san2", cat: "sandwich", name: "تويستر", price: 3500, meal: 5000 },
+    { id: "san3", cat: "sandwich", name: "فيلادلفيا", price: 4500, meal: 5000 },
+    { id: "san4", cat: "sandwich", name: "ستيك دجاج بالباربكيو", price: 3500, meal: 5000 },
+    { id: "san5", cat: "sandwich", name: "ستيك دجاج بالخردل والعسل", price: 3500, meal: 5000, review: "كلمة «والعسل» في سطر منفصل؛ افترضت أنها تتبع الخردل" },
+    { id: "san6", cat: "sandwich", name: "صاج لحم", price: 4500, meal: 5000 },
+    { id: "san7", cat: "sandwich", name: "فيلر", price: 4000, meal: 5000 },
+    { id: "san8", cat: "sandwich", name: "صاج موي", price: 4000, meal: 5000 },
+    { id: "chi1", cat: "chickburger", name: "ستيك كلاسيك", price: 3500, meal: 5000 },
+    { id: "chi2", cat: "chickburger", name: "اسكالوب", price: 3500, meal: 5000 },
+    { id: "chi3", cat: "chickburger", name: "ستيك مشروم", price: 4000, meal: 5000, review: "المطبوع «سيتك»" },
+    { id: "chi4", cat: "chickburger", name: "سبايسي", price: 3500, meal: 5000 },
+    { id: "chi5", cat: "chickburger", name: "زنكر", price: 3500, meal: 5000 },
+    { id: "chi6", cat: "chickburger", name: "جكن برغر", price: 3000, meal: 5000 },
+    { id: "bee1", cat: "beefburger", name: "كلاسيك", price: 4000, meal: 5000 },
+    { id: "bee2", cat: "beefburger", name: "برگر بالجبن", price: 4500, meal: 5000 },
+    { id: "bee3", cat: "beefburger", name: "مشروم", price: 4500, meal: 5000 },
+    { id: "bee4", cat: "beefburger", name: "بافلو", price: 4500, meal: 5000 },
+    { id: "ita1", cat: "italian", name: "مارغريتا", price: 5500 },
+    { id: "ita2", cat: "italian", name: "خضار", price: 6000 },
+    { id: "ita3", cat: "italian", name: "ببروني", price: 6500 },
+    { id: "ita4", cat: "italian", name: "دجاج", price: 6500 },
+    { id: "ita5", cat: "italian", name: "لحم", price: 7500 },
+    { id: "ita6", cat: "italian", name: "بيتزا موي", price: 8500 },
+    { id: "ita7", cat: "italian", name: "صاج ايطالي لحم", price: 5500 },
+    { id: "ita8", cat: "italian", name: "صاج ايطالي دجاج", price: 4500 },
+    { id: "ita9", cat: "italian", name: "صاج ايطالي دجاج وحبش مدخن", price: 5000 },
+    { id: "riz1", cat: "rizo", name: "ستريبس كلاسيك", price: 4000, meal: 5000 },
+    { id: "riz2", cat: "rizo", name: "ريزو باربكيو + سبايسي + مدخن + جبن", price: 4500, review: "الاسم موزع على سطرين؛ تأكد أنه صنف واحد" },
+    { id: "riz3", cat: "rizo", name: "كص دجاج", price: 4000, meal: 5000 },
+    { id: "riz4", cat: "rizo", name: "شاورما لحم", price: 5000, meal: 5000, review: "سعر الوجبة = سعر الصنف، غريب" },
+    { id: "riz5", cat: "rizo", name: "ستيك دجاج", price: 5500, meal: 5000, review: "سعر الوجبة أقل من سعر الصنف، غريب" },
+    { id: "riz6", cat: "rizo", name: "ريزو موي", price: 5000 },
+    { id: "fan1", cat: "fanker", name: "فنكر بالبهارات", price: 1500 },
+    { id: "fan2", cat: "fanker", name: "فنكر بالجبن", price: 2000 },
+    { id: "fan3", cat: "fanker", name: "فنكر بالدجاج المقرمش", price: 4000, review: "قد يكون السعر مقروءًا خطأ" },
+    { id: "fan4", cat: "fanker", name: "فنكر سويت شيلي", price: 2000 },
+    { id: "fan5", cat: "fanker", name: "فنكر باربكيو", price: 2000 },
+    { id: "fan6", cat: "fanker", name: "فنكر كوكتيل", price: 2000 }
+  ]
+};
+
+/* منطق العرض فقط — لا حاجة لتعديله عند تغيير الأصناف (عدّل menu-data.js) */
+(function () {
+  const { brand, categories, items } = window.MENU;
+  const $ = (id) => document.getElementById(id);
+  const showReview = new URLSearchParams(location.search).has("never-in-demo");
+  let cat = "all", query = "";
+
+  $("place").textContent = brand.place;
+  $("tagline").textContent = brand.tagline;
+  $("foot").textContent = brand.name + " — " + brand.place + " · الأسعار بالدينار العراقي";
+
+  // توحيد الحروف العربية ليكون البحث متسامحًا (أ/إ/آ=ا، ى=ي، ة=ه، إزالة التشكيل)
+  const norm = (s) => s.toLowerCase().replace(/[\u064B-\u065F\u0640]/g, "")
+    .replace(/[أإآ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه").replace(/گ/g, "ك").trim();
+  const fmt = (n) => n.toLocaleString("en-US");
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+  function renderCats() {
+    const nav = $("cats");
+    nav.textContent = "";
+    [{ id: "all", name: "الكل" }, ...categories].forEach((c) => {
+      const b = el("button", "chip", c.name);
+      b.type = "button";
+      b.setAttribute("aria-pressed", String(c.id === cat));
+      b.onclick = () => {
+        cat = c.id; renderCats(); renderItems();
+        const top = $("menu").offsetTop; if (window.scrollY > top) window.scrollTo({ top });
+        const on = nav.querySelector("[aria-pressed=true]"); if (on) on.scrollIntoView({ inline: "center", block: "nearest" });
+      };
+      nav.appendChild(b);
+    });
+  }
+
+  function row(it) {
+    const r = el("div", "row");
+    const info = el("div", "info");
+    const t = el("div", "nm", it.name);
+    if (it.badge) t.appendChild(el("span", "badge", it.badge));
+    info.appendChild(t);
+    if (it.desc) info.appendChild(el("div", "ds", it.desc));
+    if (it.meal) info.appendChild(el("span", "meal", "كوجبة " + fmt(it.meal)));
+    if (showReview && it.review) info.appendChild(el("span", "rv", "⚠ " + it.review));
+    if (it.image) {
+      const img = new Image(); img.loading = "lazy"; img.alt = it.name; img.src = it.image; img.className = "th";
+      img.onerror = () => img.remove();
+      r.appendChild(img);
+    }
+    r.append(info, el("span", "dots"), el("span", "pr", fmt(it.price)));
+    return r;
+  }
+
+  function renderItems() {
+    const q = norm(query);
+    const g = $("grid");
+    g.textContent = "";
+    let n = 0;
+    categories.forEach((c) => {
+      if (cat !== "all" && c.id !== cat) return;
+      const list = items.filter((it) => it.cat === c.id && (!q || norm(it.name).includes(q)));
+      if (!list.length) return;
+      n += list.length;
+      const s = el("section", "sec");
+      s.appendChild(el("h2", "", c.name));
+      const rows = el("div", "rows");
+      list.forEach((it) => rows.appendChild(row(it)));
+      s.appendChild(rows);
+      g.appendChild(s);
+    });
+    $("count").textContent = "عدد الأصناف المعروضة: " + n;
+    $("empty").hidden = n > 0;
+  }
+
+  $("q").addEventListener("input", (e) => { query = e.target.value; renderItems(); });
+  renderCats();
+  renderItems();
+})();
+</script>
+</body>
+</html>
